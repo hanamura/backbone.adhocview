@@ -1,0 +1,16 @@
+{
+	"name": "backbone.adhocview",
+	"version": "0.1.0",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/hanamura/backbone.adhocview.git"
+	},
+	"dependencies": {
+		"backbone": ">= 0.9.2"
+	},
+	"devDependencies": {
+		"grunt-shell": ">= 0.1.2",
+		"grunt-contrib": ">= 0.1.4"
+	},
+	"main": "./index.js"
+}
