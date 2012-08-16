@@ -123,7 +123,7 @@ class ButtonView extends AdhocView
 	initialize: ->
 		@_data = null
 		@_selected = false
-		@_enabled = true
+		@_enabled = false
 
 		super arguments...
 
@@ -160,6 +160,7 @@ class ButtonView extends AdhocView
 
 	_onSelected: ->
 		# override
+		if @selected() then @$el.addClass 'selected' else @$el.removeClass 'selected'
 
 	# enabled
 	enabled: (enabled) ->
@@ -177,6 +178,7 @@ class ButtonView extends AdhocView
 
 	_onEnabled: ->
 		# override
+		if @enabled() then @$el.addClass 'enabled' else @$el.removeClass 'enabled'
 
 
 
