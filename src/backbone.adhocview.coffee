@@ -116,8 +116,75 @@ class AdhocView extends Backbone.View
 		# override
 		if @visible() then @$el.show() else @$el.hide()
 
+
+
+class ButtonView extends AdhocView
+	# init
+	initialize: ->
+		@_data = null
+		@_selected = false
+		@_enabled = true
+
+		super arguments...
+
+	# data
+	data: (data) ->
+		if data != undefined
+			if @_data != data
+				@_data = data
+				@_inData()
+			@
+		else
+			@_data
+
+	_inData: ->
+		@_onData()
+		@trigger 'data', @
+
+	_onData: ->
+		# override
+
+	# selected
+	selected: (selected) ->
+		if selected != undefined
+			if @_selected != selected
+				@_selected = selected
+				@_inSelected()
+			@
+		else
+			@_selected
+
+	_inSelected: ->
+		@_onSelected()
+		@trigger 'selected', @
+
+	_onSelected: ->
+		# override
+
+	# enabled
+	enabled: (enabled) ->
+		if enabled != undefined
+			if @_enabled != enabled
+				@_enabled = enabled
+				@_inEnabled()
+			@
+		else
+			@_enabled
+
+	_inEnabled: ->
+		@_onEnabled()
+		@trigger 'enabled', @
+
+	_onEnabled: ->
+		# override
+
+
+
 # export
 if module?.exports?
-	module.exports = AdhocView
+	module.exports =
+		AdhocView: AdhocView
+		ButtonView: ButtonView
 else if @Backbone?
 	@Backbone.AdhocView = AdhocView
+	@Backbone.ButtonView = ButtonView
