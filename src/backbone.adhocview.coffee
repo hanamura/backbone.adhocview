@@ -126,12 +126,10 @@ class ButtonView extends AdhocView
 		@_enabled = false
 		@_hover = false
 
-		@on 'mouseenter', =>
-			@_hover = true
-			@_inHover()
-		@on 'mouseleave', =>
-			@_hover = false
-			@_inHover()
+		@$el
+			.on('mouseenter', @_onMouseEnter)
+			.on('mouseleave', @_onMouseLeave)
+			.on('click', @_onClick)
 
 		super arguments...
 
@@ -191,12 +189,25 @@ class ButtonView extends AdhocView
 	# hover
 	hover: -> @_hover
 
+	_onMouseEnter: =>
+		@_hover = true
+		@_inHover()
+
+	_onMouseLeave: =>
+		@_hover = false
+		@_inHover()
+
 	_inHover: ->
 		@_onHover()
 		@trigger 'hover', @
 
 	_onHover: ->
 		# override
+
+	# on click
+	_onClick: (e) =>
+		e.preventDefault()
+		@trigger 'click', @
 
 
 
