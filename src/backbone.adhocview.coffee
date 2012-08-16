@@ -124,6 +124,14 @@ class ButtonView extends AdhocView
 		@_data = null
 		@_selected = false
 		@_enabled = false
+		@_hover = false
+
+		@on 'mouseenter', =>
+			@_hover = true
+			@_inHover()
+		@on 'mouseleave', =>
+			@_hover = false
+			@_inHover()
 
 		super arguments...
 
@@ -179,6 +187,16 @@ class ButtonView extends AdhocView
 	_onEnabled: ->
 		# override
 		if @enabled() then @$el.addClass 'enabled' else @$el.removeClass 'enabled'
+
+	# hover
+	hover: -> @_hover
+
+	_inHover: ->
+		@_onHover()
+		@trigger 'hover', @
+
+	_onHover: ->
+		# override
 
 
 
