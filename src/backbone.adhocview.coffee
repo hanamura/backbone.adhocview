@@ -5,6 +5,8 @@ else if @Backbone
 else
 	throw new Error 'Backbone not found'
 
+
+
 class AdhocView extends Backbone.View
 	# init
 	initialize: ->
@@ -21,10 +23,10 @@ class AdhocView extends Backbone.View
 	position: (position) ->
 		if position != undefined
 			some = false
-			if position.x
+			if @_x != position.x
 				@_x = position.x
 				some = true
-			if position.y
+			if @_y != position.y
 				@_y = position.y
 				some = true
 			if some
@@ -53,10 +55,10 @@ class AdhocView extends Backbone.View
 	size: (size) ->
 		if size != undefined
 			some = false
-			if size.width
+			if @_width != size.width
 				@_width = size.width
 				some = true
-			if size.height
+			if @_height != size.height
 				@_height = size.height
 				some = true
 			if some
@@ -84,8 +86,9 @@ class AdhocView extends Backbone.View
 	# alpha
 	alpha: (alpha) ->
 		if alpha != undefined
-			@_alpha = alpha
-			@_inAlpha()
+			if @_alpha != alpha
+				@_alpha = alpha
+				@_inAlpha()
 			@
 		else
 			@_alpha
@@ -102,8 +105,9 @@ class AdhocView extends Backbone.View
 	# visible
 	visible: (visible) ->
 		if visible != undefined
-			@_visible = visible
-			@_inVisible()
+			if @_visible != visible
+				@_visible = visible
+				@_inVisible()
 			@
 		else
 			@_visible
