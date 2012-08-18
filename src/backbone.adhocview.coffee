@@ -8,10 +8,10 @@ else
 class AdhocView extends Backbone.View
 	# init
 	initialize: ->
-		@_x = 0
-		@_y = 0
-		@_width = 0
-		@_height = 0
+		@_x = NaN
+		@_y = NaN
+		@_width = NaN
+		@_height = NaN
 		@_alpha = 1
 		@_visible = true
 
@@ -31,13 +31,13 @@ class AdhocView extends Backbone.View
 				@_inPosition()
 			@
 		else
-			x: @_x, y: @_y
+			x: @_x or 0, y: @_y or 0
 
 	x: (x) ->
-		if x != undefined then @position x:x else @_x
+		if x != undefined then @position x:x else @_x or 0
 
 	y: (y) ->
-		if y != undefined then @position y:y else @_y
+		if y != undefined then @position y:y else @_y or 0
 
 	_inPosition: ->
 		@_onPosition()
@@ -63,13 +63,13 @@ class AdhocView extends Backbone.View
 				@_inSize()
 			@
 		else
-			width: @_width, height: @_height
+			width: @_width or 0, height: @_height or 0
 
 	width: (width) ->
-		if width != undefined then @size width:width else @_width
+		if width != undefined then @size width:width else @_width or 0
 
 	height: (height) ->
-		if height != undefined then @size height:height else @_height
+		if height != undefined then @size height:height else @_height or 0
 
 	_inSize: ->
 		@_onSize()
