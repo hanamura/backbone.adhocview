@@ -23,10 +23,10 @@ class AdhocView extends Backbone.View
 	position: (position) ->
 		if position != undefined
 			some = false
-			if @_x != position.x
+			if 'x' of position and @_x != position.x
 				@_x = position.x
 				some = true
-			if @_y != position.y
+			if 'y' of position and @_y != position.y
 				@_y = position.y
 				some = true
 			if some
@@ -55,10 +55,10 @@ class AdhocView extends Backbone.View
 	size: (size) ->
 		if size != undefined
 			some = false
-			if @_width != size.width
+			if 'width' of size and @_width != size.width
 				@_width = size.width
 				some = true
-			if @_height != size.height
+			if 'height' of size and @_height != size.height
 				@_height = size.height
 				some = true
 			if some
